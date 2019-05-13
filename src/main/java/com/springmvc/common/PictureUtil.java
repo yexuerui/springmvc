@@ -101,7 +101,7 @@ public class PictureUtil {
     public static void watermark(String srcPath, String destPath, String watermarkPath, float opacity) throws IOException {
         Thumbnails.of(srcPath).size(1280, 1024)
                 .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(watermarkPath)), opacity)
-                .scale(1.0f)
+                .outputQuality(1.0f)
                 .toFile(destPath);
     }
 
@@ -172,14 +172,14 @@ public class PictureUtil {
      */
     public static void main(String[] args) throws IOException {
 
-        String certURL = "https://upload-images.jianshu.io/upload_images/16013479-6d8e785876378d3d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
-//        String certURL = "http://pic1.nipic.com/2008-12-15/20081215211851562_2.jpg";
-        String destFile = "D:\\source";
-        String userId = "001";
-//        downLoadPicFromPublivoidcNetToLocal(certURL, destFile, userId);
-        String scaleDestFile = "D:\\source/1.png";
-        URL url = new URL(certURL);
-//        scaleZoomByUrl(scaleZoomByUrlurl, scaleDestFile, 0.5);
-        textWatermark();
+        //  D:/veradm/springmvc/target/classes/   若是文件不存在，那么获取null
+//        URL resource = PictureUtil.class.getClassLoader().getResource("images/001.jpg");
+
+        //获取classpath目录下的资源
+        String srcPath = PictureUtil.class.getClassLoader().getResource("images/001.jpg").getPath();
+        String destResourcePath= PictureUtil.class.getClassLoader().getResource("").getPath()+"images/001_wartermark.png";
+        URL watermarkResource = PictureUtil.class.getClassLoader().getResource("images/watermark_1.png");
+        String watermarkResourcePath = watermarkResource.getPath();
+        watermark(srcPath, destResourcePath, watermarkResourcePath, 0.8f);
     }
 }
