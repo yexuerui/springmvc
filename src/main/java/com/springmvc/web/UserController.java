@@ -10,6 +10,7 @@ import com.springmvc.entity.sysVO.BaseBusinessRespVo;
 import com.springmvc.entity.sysVO.InnerReqVO;
 import com.springmvc.entity.sysVO.InnerRespVO;
 import com.springmvc.generic.mybatis.pojo.Usert;
+import com.springmvc.service.TestTransactionService;
 import com.springmvc.service.UsertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,20 +36,19 @@ public class UserController {
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Resource
     private UsertService usertService;
+    @Resource
+    private TestTransactionService testTransactionService;
 
     @ResponseBody
-//    @RequestMapping(value = "user",method = RequestMethod.GET,produces = "text/html;charset=UTF-8")
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public String showUserName() {
         Usert usert = new Usert();
-        usert.setId(2);
+        usert.setId(4);
         usert.setAge(20);
-        usert.setUserName("李明");
+        usert.setUserName("李吉吉");
         usert.setPassword("123");
-        int i = usertService.insertUser(usert);
-        return "xxx";
-//        return "成功";
-//        return "success";
+        testTransactionService.businessUsert(usert);
+        return "success";
     }
 
     /**
@@ -74,16 +74,16 @@ public class UserController {
         } catch (ValidateException e) {
             baseBusinessRespVo.setSubCode(e.getCode());
             baseBusinessRespVo.setSubMsg(e.getMessage());
-            logger.info("参数校验异常[{}]",e.getMessage(),e);
+            logger.info("参数校验异常[{}]", e.getMessage(), e);
         } catch (BusinessException e) {
             //业务异常
             baseBusinessRespVo.setSubCode(ResponseCodeEnum.BUSINESS_EXCEPTION.getRespCode());
             baseBusinessRespVo.setSubMsg(e.getMessage());
-            logger.info("业务请求异常[{}]",e.getMessage(),e);
+            logger.info("业务请求异常[{}]", e.getMessage(), e);
         } catch (Exception e) {
             baseBusinessRespVo.setSubCode(ResponseCodeEnum.EXCRPTION.getRespCode());
             baseBusinessRespVo.setSubMsg(ResponseCodeEnum.EXCRPTION.getRespDesc());
-            logger.info("请求异常[{}]",e.getMessage(),e);
+            logger.info("请求异常[{}]", e.getMessage(), e);
         } finally {
             innerRespVO.setCode(ResponseCodeEnum.SUCCESS.getRespCode());
             innerRespVO.setMsg(ResponseCodeEnum.SUCCESS.getRespDesc());

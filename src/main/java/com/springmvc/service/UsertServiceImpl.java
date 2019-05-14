@@ -37,6 +37,7 @@ public class UsertServiceImpl implements UsertService {
         return usertMapper.selectByPrimaryKey(id);
     }
 
+
     @Transactional
     public int insertUser(Usert usert) {
         int insert = 0;
