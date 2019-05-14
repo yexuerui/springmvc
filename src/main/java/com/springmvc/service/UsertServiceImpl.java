@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.springmvc.common.enums.BusinessRespCode;
 import com.springmvc.common.enums.ResponseCodeEnum;
 import com.springmvc.common.exception.BusinessException;
+import com.springmvc.entity.businessVO.UsertQueryReqVo;
 import com.springmvc.entity.businessVO.UsertQueryRespVo;
 import com.springmvc.entity.sysVO.BaseBusinessRespVo;
 import com.springmvc.entity.sysVO.InnerRespVO;
@@ -48,7 +49,7 @@ public class UsertServiceImpl implements UsertService {
     }
 
     //业务逻辑
-    public InnerRespVO userInfoQuery(Usert usertVO) {
+    public InnerRespVO userInfoQuery(UsertQueryReqVo usertVO) {
         InnerRespVO innerRespVO = new InnerRespVO();
         UsertQueryRespVo usertQueryRespVo = new UsertQueryRespVo();
         //查询本地库数据是否存在

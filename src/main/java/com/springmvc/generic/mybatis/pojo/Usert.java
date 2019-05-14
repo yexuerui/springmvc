@@ -1,6 +1,9 @@
 package com.springmvc.generic.mybatis.pojo;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Usert {
+
     private Integer id;
 
     private String userName;

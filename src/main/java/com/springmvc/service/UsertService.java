@@ -1,5 +1,6 @@
 package com.springmvc.service;
 
+import com.springmvc.entity.businessVO.UsertQueryReqVo;
 import com.springmvc.entity.sysVO.InnerRespVO;
 import com.springmvc.generic.mybatis.pojo.Usert;
 
@@ -28,6 +29,6 @@ public interface UsertService {
      * @param usertVO
      * @return
      */
-    InnerRespVO userInfoQuery(Usert usertVO);
+    InnerRespVO userInfoQuery(UsertQueryReqVo usertVO);
 
 }

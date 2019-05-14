@@ -1,5 +1,8 @@
 package com.springmvc.entity.sysVO;
 
+import com.alibaba.fastjson.JSON;
+import com.springmvc.entity.businessVO.UsertQueryReqVo;
+
 /**
  * @ClassName InnerReqDTO
  * @Description 公共请求头
@@ -28,5 +31,16 @@ public class InnerReqVO {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public static void main(String[] args) {
+        InnerReqVO innerReqVO = new InnerReqVO();
+        innerReqVO.setVersionNo("1.0");
+        UsertQueryReqVo usertQueryReqVo = new UsertQueryReqVo();
+        usertQueryReqVo.setId(2);
+        innerReqVO.setData(JSON.toJSONString(usertQueryReqVo));
+
+        String string = JSON.toJSONString(innerReqVO);
+        System.out.println(string);
     }
 }
